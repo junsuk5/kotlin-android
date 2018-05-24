@@ -30,14 +30,15 @@ class ResultActivity : AppCompatActivity() {
 
         // 이미지 표시
         when {
-            bmi >= 23 -> imageView.setImageResource(R.drawable.ic_sentiment_very_dissatisfied_black_24dp)
-            bmi >= 18.5 -> imageView.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp)
-            else -> imageView.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp)
+            bmi >= 23 ->
+                imageView.setImageResource(R.drawable.ic_sentiment_very_dissatisfied_black_24dp)
+            bmi >= 18.5 ->
+                imageView.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp)
+            else ->
+                imageView.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp)
         }
 
-        // 변경 전
-//        Toast.makeText(this, "$bmi", Toast.LENGTH_SHORT).show()
-        // 변경 후
+        // 토스트 메시지로 BMI 값 표시
         toast("$bmi")
     }
 }

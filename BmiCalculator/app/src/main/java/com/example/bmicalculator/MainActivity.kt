@@ -1,5 +1,6 @@
 package com.example.bmicalculator
 
+import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
@@ -16,17 +17,10 @@ class MainActivity : AppCompatActivity() {
         loadData()
 
         resultButton.setOnClickListener {
-            // 변경 전
-//            val intent = Intent(this, ResultActivity::class.java)
-//            intent.putExtra("weight", weightEditText.text.toString())
-//            intent.putExtra("height", heightEditText.text.toString())
-//            startActivity(intent)
-
             // 마지막에 입력한 내용을 저장
             saveData(heightEditText.text.toString().toInt(),
                     weightEditText.text.toString().toInt())
 
-            // 간략화
             startActivity<ResultActivity>(
                     "weight" to weightEditText.text.toString(),
                     "height" to heightEditText.text.toString()
@@ -48,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val height = pref.getInt("KEY_HEIGHT", 0)
         val weight = pref.getInt("KEY_WEIGHT", 0)
 
-        if (height != 0) {
+        if (height != 0 && weight != 0) {
             heightEditText.setText(height.toString())
             weightEditText.setText(weight.toString())
         }
