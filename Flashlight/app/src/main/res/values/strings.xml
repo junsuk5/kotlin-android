@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Flashlight</string>
+    <string name="appwidget_text">손전등</string>
+    <string name="add_widget">Add widget</string>
+</resources>
