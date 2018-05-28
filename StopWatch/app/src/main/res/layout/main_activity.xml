@@ -11,7 +11,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:tint="@android:color/white"
         app:backgroundTint="@color/colorPrimary"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
     <TextView
-        android:id="@+id/hmTextView"
+        android:id="@+id/secTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -34,21 +34,21 @@
         app:layout_constraintVertical_bias="0.100000024" />
 
     <TextView
-        android:id="@+id/msTextView"
+        android:id="@+id/milliTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="00"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBaseline_toBaselineOf="@+id/hmTextView"
-        app:layout_constraintStart_toEndOf="@+id/hmTextView" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/secTextView"
+        app:layout_constraintStart_toEndOf="@+id/secTextView" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/resetFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,14 +58,12 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hmTextView">
+        app:layout_constraintTop_toBottomOf="@+id/secTextView">
 
         <LinearLayout
             android:id="@+id/lapLayout"
@@ -79,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:text="랩 타임"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

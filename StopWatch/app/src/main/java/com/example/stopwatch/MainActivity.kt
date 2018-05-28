@@ -48,20 +48,24 @@ class MainActivity : AppCompatActivity() {
 
         timerTask = timer(period = 10) {
             time++
+            val sec = time / 100
+            val milli = time % 100
             runOnUiThread {
-                hmTextView.text = "${time / 100}"
-                msTextView.text = "${time % 100}"
+                secTextView.text = "$sec"
+                milliTextView.text = "$milli"
             }
         }
     }
 
     private fun reset() {
         timerTask?.cancel()
+
+        // 모든 변수 초기화
         time = 0
         isRunning = false
         fab.setImageResource(R.drawable.ic_play_arrow_black_24dp)
-        hmTextView.text = "0"
-        msTextView.text = "00"
+        secTextView.text = "0"
+        milliTextView.text = "00"
 
         // 모든 랩타임을 제거
         lapLayout.removeAllViews()
