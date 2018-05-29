@@ -6,8 +6,6 @@ import android.hardware.camera2.CameraManager
 
 
 class Torch(context: Context) {
-    private val TAG = Torch::class.qualifiedName
-
     private var cameraId: String? = null
     private val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
@@ -16,21 +14,12 @@ class Torch(context: Context) {
     }
 
     fun flashOn() {
-//        try {
-            cameraManager.setTorchMode(cameraId, true)
-//        } catch (e: CameraAccessException) {
-//            Log.d(TAG, "flash on fail : " + e.localizedMessage)
-//        }
+        cameraManager.setTorchMode(cameraId, true)
 
     }
 
     fun flashOff() {
-//        try {
-            cameraManager.setTorchMode(cameraId, false)
-//        } catch (e: CameraAccessException) {
-//            Log.d(TAG, "flash off fail : " + e.localizedMessage)
-//        }
-
+        cameraManager.setTorchMode(cameraId, false)
     }
 
     private fun getCameraId(): String? {

@@ -1,24 +1,21 @@
 package com.example.flashlight
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.intentFor
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var torch: Torch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        torch = Torch(this)
-
-        flashSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        flashSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                torch.flashOn()
+                startService(intentFor<TorchService>().setAction("on"))
             } else {
-                torch.flashOff()
+                startService(intentFor<TorchService>().setAction("off"))
             }
         }
 

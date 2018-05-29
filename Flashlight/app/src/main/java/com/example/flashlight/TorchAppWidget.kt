@@ -37,7 +37,7 @@ class TorchAppWidget : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.torch_app_widget)
             views.setTextViewText(R.id.appwidget_text, widgetText)
 
-            views.setOnClickPendingIntent(R.id.appwidget_text,
+            views.setOnClickPendingIntent(R.id.appwidget_layout,
                     getPendingIntent(context, 0))
 
             // Instruct the widget manager to update the widget
@@ -45,8 +45,8 @@ class TorchAppWidget : AppWidgetProvider() {
         }
 
         private fun getPendingIntent(context: Context, value: Int): PendingIntent {
-            val intent = Intent(context, MainActivity::class.java)
-            return PendingIntent.getActivity(context, value, intent, 0)
+            val intent = Intent(context, TorchService::class.java)
+            return PendingIntent.getService(context, value, intent, 0)
         }
     }
 }
