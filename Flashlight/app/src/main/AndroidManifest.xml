@@ -17,6 +17,11 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".TorchService"
+            android:enabled="true"
+            android:exported="true" />
+
         <receiver android:name=".TorchAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -26,11 +31,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/torch_app_widget_info" />
         </receiver>
-
-        <service
-            android:name=".TorchService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>
