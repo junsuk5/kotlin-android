@@ -11,6 +11,10 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.browse
+import org.jetbrains.anko.email
+import org.jetbrains.anko.sendSMS
+import org.jetbrains.anko.share
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +78,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 return true
             }
+            R.id.action_send_text -> {
+                sendSMS("031-123-4567", webView.url)
+                return true
+            }
+            R.id.action_email -> {
+                email("test@example.com", "좋은 사이트", webView.url)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -87,21 +99,23 @@ class MainActivity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_share -> {
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.apply {
-                    type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, webView.url)
-                    var chooser = Intent.createChooser(intent, null)
-                    if (intent.resolveActivity(packageManager) != null) {
-                        startActivity(chooser)
-                    }
-                }
+                share(webView.url)
+//                val intent = Intent(Intent.ACTION_SEND)
+//                intent.apply {
+//                    type = "text/plain"
+//                    putExtra(Intent.EXTRA_TEXT, webView.url)
+//                    var chooser = Intent.createChooser(intent, null)
+//                    if (intent.resolveActivity(packageManager) != null) {
+//                        startActivity(chooser)
+//                    }
+//                }
             }
             R.id.action_browser -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webView.url))
-                if (intent.resolveActivity(packageManager) != null) {
-                    startActivity(intent)
-                }
+                browse(webView.url)
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webView.url))
+//                if (intent.resolveActivity(packageManager) != null) {
+//                    startActivity(intent)
+//                }
             }
         }
         return super.onContextItemSelected(item)
