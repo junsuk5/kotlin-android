@@ -1,7 +1,14 @@
 package com.example.mywebbrowser
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.ContextMenu
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -10,11 +17,94 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // 웹뷰 기본 설정
         webView.apply {
             settings.javaScriptEnabled = true
             webViewClient = WebViewClient()
         }
 
         webView.loadUrl("http://www.google.com")
+
+        urlEditText.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                webView.loadUrl(urlEditText.text.toString())
+                true
+            } else {
+                false
+            }
+        }
+
+        // 컨텍스트 메뉴 등록
+        registerForContextMenu(webView)
     }
+
+    override fun onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    // 옵션 메뉴 작성
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_google, R.id.action_home -> {
+                webView.loadUrl("http://www.google.com")
+                return true
+            }
+            R.id.action_naver -> {
+                webView.loadUrl("http://www.naver.com")
+                return true
+            }
+            R.id.action_daum -> {
+                webView.loadUrl("http://www.daum.net")
+                return true
+            }
+            R.id.action_call -> {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:031-123-4567")
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    // 컨텍스트 메뉴 작성
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.context, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_share -> {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, webView.url)
+                    var chooser = Intent.createChooser(intent, null)
+                    if (intent.resolveActivity(packageManager) != null) {
+                        startActivity(chooser)
+                    }
+                }
+            }
+            R.id.action_browser -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webView.url))
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                }
+            }
+        }
+        return super.onContextItemSelected(item)
+    }
+
 }
