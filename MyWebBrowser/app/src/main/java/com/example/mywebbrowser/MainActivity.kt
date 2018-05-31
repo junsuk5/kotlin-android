@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         webView.loadUrl("http://www.google.com")
 
-        urlEditText.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+        urlEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 webView.loadUrl(urlEditText.text.toString())
                 true
             } else {
@@ -100,22 +100,9 @@ class MainActivity : AppCompatActivity() {
         when (item?.itemId) {
             R.id.action_share -> {
                 share(webView.url)
-//                val intent = Intent(Intent.ACTION_SEND)
-//                intent.apply {
-//                    type = "text/plain"
-//                    putExtra(Intent.EXTRA_TEXT, webView.url)
-//                    var chooser = Intent.createChooser(intent, null)
-//                    if (intent.resolveActivity(packageManager) != null) {
-//                        startActivity(chooser)
-//                    }
-//                }
             }
             R.id.action_browser -> {
                 browse(webView.url)
-//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webView.url))
-//                if (intent.resolveActivity(packageManager) != null) {
-//                    startActivity(intent)
-//                }
             }
         }
         return super.onContextItemSelected(item)
