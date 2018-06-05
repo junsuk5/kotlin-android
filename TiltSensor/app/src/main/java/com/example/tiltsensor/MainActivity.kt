@@ -46,9 +46,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // values[1]: y 축 값 : 왼쪽으로 기울이면 -10~0, 오른쪽으로 기울이면 : 0~10
         // values[2]: z 축 값 : 미사용
 
-        Log.d(TAG, "onSensorChanged: x : ${event.values[0]}")
-        Log.d(TAG, "onSensorChanged: y : ${event.values[1]}")
-        Log.d(TAG, "onSensorChanged: z : ${event.values[2]}")
+        Log.d(TAG, "onSensorChanged: " +
+                "x : ${event.values[0]}, y : ${event.values[1]}, z : ${event.values[2]}")
 
         tiltView.onSensorEvent(event)
     }
