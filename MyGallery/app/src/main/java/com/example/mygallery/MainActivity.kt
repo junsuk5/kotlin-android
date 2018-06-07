@@ -8,8 +8,12 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
@@ -20,20 +24,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+        // 권한이 부여되었는지 확인 ①
+        if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            // 권한이 허용되지 않음
+            // 권한이 허용되지 않음 ②
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                //
+                // 이전에 이미 권한이 거부되었을 때 설명 ③
+                alert("사진 정보를 얻기 위해서는 외부 저장소 권한이 필수로 필요합니다", "권한이 필요한 이유") {
+                    yesButton {
+                        // 권한 요청
+                        ActivityCompat.requestPermissions(this@MainActivity,
+                                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                                REQUEST_READ_EXTERNAL_STORAGE)
+                    }
+                    noButton { }
+                }.show()
             } else {
-                // 권한 요청
+                // 권한 요청 ④
                 ActivityCompat.requestPermissions(this,
                         arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                         REQUEST_READ_EXTERNAL_STORAGE)
             }
         } else {
-            // 권한이 이미 허용됨
+            // 권한이 이미 허용됨 ⑤
             getAllPhotos()
         }
     }
@@ -43,12 +57,13 @@ class MainActivity : AppCompatActivity() {
 
         when (requestCode) {
             REQUEST_READ_EXTERNAL_STORAGE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                if ((grantResults.isNotEmpty()
+                                && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // 권한 허용됨
                     getAllPhotos()
                 } else {
                     // 권한 거부
-                    Toast.makeText(this, "권한 거부 됨", Toast.LENGTH_SHORT).show()
+                    toast("권한 거부 됨")
                 }
                 return
             }
@@ -63,14 +78,17 @@ class MainActivity : AppCompatActivity() {
                 null,   // ④
                 MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC")    // ⑤
 
-        // 사진 경로를 프래그먼트로 전달하기
+        // ①
         val fragments = ArrayList<Fragment>()
-        while (cursor.moveToNext()) {
-            // 사진 경로 Uri 가지고 오기
-            val uri = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
-            fragments.add(PhotoFragment.newInstance(uri))
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                // 사진 경로 Uri 가지고 오기 ②
+                val uri = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                Log.d("MainActivity", uri)
+                fragments.add(PhotoFragment.newInstance(uri))
+            }
+            cursor.close() // ③
         }
-        cursor?.close()
 
         // 어댑터
         val adapter = MyPagerAdapter(supportFragmentManager)

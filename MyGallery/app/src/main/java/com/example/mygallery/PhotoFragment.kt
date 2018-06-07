@@ -17,6 +17,7 @@ class PhotoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 2
         arguments?.let {
             uri = it.getString(ARG_URI)
         }
@@ -24,6 +25,7 @@ class PhotoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        // 3
         return inflater.inflate(R.layout.fragment_photo, container, false)
     }
 
@@ -32,6 +34,7 @@ class PhotoFragment : Fragment() {
         Glide.with(this).load(uri).into(imageView)
     }
 
+    // 1
     companion object {
         @JvmStatic
         fun newInstance(uri: String) =
