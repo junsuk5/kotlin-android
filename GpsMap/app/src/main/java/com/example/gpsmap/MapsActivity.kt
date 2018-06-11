@@ -6,10 +6,10 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Looper
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.WindowManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -92,7 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // 권한 요청
         permissionCheck(cancel = {
-            showLocationInfoDialog()
+            showPermissionInfoDialog()
         }, ok = {
             mMap.isMyLocationEnabled = true
         })
@@ -101,22 +101,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
 
+        // 권한 요청 ⑨
         permissionCheck(cancel = {
-            // 위치 정보가 필요한 이유 다이얼로그 표시
-            showLocationInfoDialog()
+            // 위치 정보가 필요한 이유 다이얼로그 표시 ⑩
+            showPermissionInfoDialog()
         }, ok = {
-            // 현재 위치를 주기적으로 요청
+            // 현재 위치를 주기적으로 요청 (권한이 필요한 부분) ⑪
             addLocationListener()
         })
     }
 
-    override fun onPause() {
-        super.onPause()
-        // 현재 위치 요청을 취소
-        removeLocationListener()
+    @SuppressLint("MissingPermission")
+    private fun addLocationListener() {
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                locationCallback,
+                null);
     }
 
-    private fun showLocationInfoDialog() {
+    private fun showPermissionInfoDialog() {
         alert("현재 위치 정보를 얻기 위해서는 위치 권한이 필요합니다", "권한이 필요한 이유") {
             yesButton {
                 // 권한 요청
@@ -128,14 +130,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }.show()
     }
 
-    @SuppressLint("MissingPermission")
-    private fun addLocationListener() {
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
-                locationCallback,
-                Looper.myLooper());
+    override fun onPause() {
+        super.onPause()
+        // ①
+        removeLocationListener()
     }
 
     private fun removeLocationListener() {
+        // 현재 위치 요청을 삭제 ②
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }
 
@@ -157,18 +159,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun permissionCheck(cancel: () -> Unit, ok: () -> Unit) {
+        // 위치 권한이 있는지 검사
         if (ContextCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // 권한이 허용되지 않음 ②
+            // 권한이 허용되지 않음
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // 이전에 권한을 한 번 거부한 적이 있는 경우에 실행할 함수
                 cancel()
             } else {
-                // 권한 요청 ④
+                // 권한 요청
                 ActivityCompat.requestPermissions(this,
                         arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                         REQUEST_ACCESS_FINE_LOCATION)
             }
         } else {
+            // 권한을 수락 했을 때 실행할 함수
             ok()
         }
     }
@@ -180,15 +185,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val location = locationResult?.lastLocation
 
             location?.run {
-                // 14 level로 확대하며 현재 위치로 애니메이션 이동
+                // 14 level로 확대하며 현재 위치로 카메라 이동
                 val latLng = LatLng(latitude, longitude)
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
 
-//                latLngs.add(latLng)
+                Log.d("MapsActivity", "위도: $latitude, 경도: $longitude")
+
                 polylineOptions.add(latLng)
 
                 // 선 그리기
                 mMap.addPolyline(polylineOptions)
+
             }
 
         }
