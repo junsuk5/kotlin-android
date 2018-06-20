@@ -5,7 +5,7 @@ import io.realm.annotations.PrimaryKey
 
 open class Todo(
         @PrimaryKey var id: Long = 0,
-        var text: String = "",
+        var todo: String = "",
         var date: Long = 0
 ) : RealmObject() {
 
