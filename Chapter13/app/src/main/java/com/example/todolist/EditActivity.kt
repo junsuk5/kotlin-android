@@ -52,7 +52,7 @@ class EditActivity : AppCompatActivity() {
     private fun updateMode(id: Long) {
         // id에 해당하는 객체를 화면에 표시
         val todo = realm.where<Todo>().equalTo("id", id).findFirst()!!
-        todoEditText.setText(todo.todo)
+        todoEditText.setText(todo.title)
         calendarView.date = todo.date
 
         // 완료 버튼을 클릭하면 수정
@@ -69,7 +69,7 @@ class EditActivity : AppCompatActivity() {
     private fun updateTodo(id: Long) {
         realm.beginTransaction()
         val todo = realm.where<Todo>().equalTo("id", id).findFirst()!!
-        todo.todo = todoEditText.text.toString()
+        todo.title = todoEditText.text.toString()
         todo.date = calendar.timeInMillis
         realm.commitTransaction()
 
@@ -81,7 +81,7 @@ class EditActivity : AppCompatActivity() {
     private fun insertTodo() {
         realm.beginTransaction()
         val todo = realm.createObject<Todo>(nextId())
-        todo.todo = todoEditText.text.toString()
+        todo.title = todoEditText.text.toString()
         todo.date = calendar.timeInMillis
         realm.commitTransaction()
 

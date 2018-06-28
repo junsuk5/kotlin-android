@@ -4,17 +4,14 @@ import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    private val soundPool by lazy {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            SoundPool.Builder().setMaxStreams(8).build()
-        } else {
-            SoundPool(8, AudioManager.STREAM_MUSIC, 0)
-        }
+    private val soundPool = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        SoundPool.Builder().setMaxStreams(8).build()
+    } else {
+        SoundPool(8, AudioManager.STREAM_MUSIC, 0)
     }
 
     private val sounds = listOf(
@@ -28,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             Pair(R.id.do2, R.raw.do2)
     )
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

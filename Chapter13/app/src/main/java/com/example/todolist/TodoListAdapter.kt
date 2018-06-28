@@ -27,7 +27,7 @@ class TodoListAdapter(realmResult: OrderedRealmCollection<Todo>) : RealmBaseAdap
 
         if (adapterData != null) {
             val item = adapterData!![position]
-            vh.textTextView.text = item.todo
+            vh.textTextView.text = item.title
             vh.dateTextView.text = DateFormat.format("YYYY/MM/dd", item.date)
         }
 
