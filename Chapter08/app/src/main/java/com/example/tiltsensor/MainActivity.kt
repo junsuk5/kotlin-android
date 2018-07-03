@@ -40,19 +40,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager.unregisterListener(this)
     }
 
-    override fun onSensorChanged(event: SensorEvent) {
+    override fun onSensorChanged(event: SensorEvent?) {
         // 센서 값이 변경되면 호출 됨
         // values[0]: x 축 값 : 위로 기울이면 -10~0, 아래로 기울이면 : 0~10
         // values[1]: y 축 값 : 왼쪽으로 기울이면 -10~0, 오른쪽으로 기울이면 : 0~10
         // values[2]: z 축 값 : 미사용
 
-        Log.d(TAG, "onSensorChanged: " +
-                "x : ${event.values[0]}, y : ${event.values[1]}, z : ${event.values[2]}")
-
-        tiltView.onSensorEvent(event)
+        event?.let {
+            Log.d(TAG, "onSensorChanged: " +
+                    "x : ${event.values[0]}, y : ${event.values[1]}, z : ${event.values[2]}")
+            tiltView.onSensorEvent(event)
+        }
     }
 
-    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         // 센서 정밀도가 변경되면 호출 됨
     }
 
