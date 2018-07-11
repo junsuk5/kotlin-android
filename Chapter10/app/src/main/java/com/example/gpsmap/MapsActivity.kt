@@ -115,7 +115,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun addLocationListener() {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest,
                 locationCallback,
-                null);
+                null)
     }
 
     private fun showPermissionInfoDialog() {
