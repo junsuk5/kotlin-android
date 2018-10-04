@@ -24,6 +24,7 @@
 - 77쪽 동그라미 9 위치 오류
 - 101쪽 중간 'when문은' -> 'when문을'
 - 155쪽 둘째줄 '에디티텍스트' -> '에디트텍스트'
+- 160쪽 6.3절 둘째줄 'FloatingActionButton' -> 'FloatingActionButton,' (콤마)
 
 ## 관련 서적
 
