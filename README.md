@@ -26,6 +26,7 @@
 - 105쪽 둘째줄 '이 코드는 빈 생성자를' -> '이 코드는 name 파라미터를 받는 생성자를'
 - 155쪽 둘째줄 '에디티텍스트' -> '에디트텍스트'
 - 160쪽 6.3절 둘째줄 'FloatingActionButton' -> 'FloatingActionButton,' (콤마)
+- 411쪽 하단 소스 코드 'realmCollection' -> 'realmResult'
 
 ## 관련 서적
 
