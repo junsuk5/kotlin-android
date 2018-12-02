@@ -51,8 +51,10 @@ class MainActivity : AppCompatActivity() {
             val sec = time / 100
             val milli = time % 100
             runOnUiThread {
-                secTextView.text = "$sec"
-                milliTextView.text = "$milli"
+                if (isRunning) {
+                    secTextView.text = "$sec"
+                    milliTextView.text = "$milli"
+                }
             }
         }
     }
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     private fun recordLapTime() {
         val lapTime = this.time
         val textView = TextView(this)
-        textView.text = "$lap LAB : ${lapTime / 100}.${lapTime % 100}"
+        textView.text = "$lap LAP : ${lapTime / 100}.${lapTime % 100}"
 
         // 맨 위에 랩타임 추가
         lapLayout.addView(textView, 0)
