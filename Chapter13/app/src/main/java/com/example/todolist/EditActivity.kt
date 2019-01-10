@@ -2,7 +2,6 @@ package com.example.todolist
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
@@ -40,7 +39,7 @@ class EditActivity : AppCompatActivity() {
     // 추가 모드 초기화
     private fun insertMode() {
         // 삭제 버튼을 감추기
-        deleteFab.visibility = View.GONE
+        deleteFab.hide()
 
         // 완료 버튼을 클릭하면 추가
         fab.setOnClickListener {
