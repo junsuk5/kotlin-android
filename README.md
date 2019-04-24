@@ -26,6 +26,16 @@
 - 105쪽 둘째줄 '이 코드는 빈 생성자를' -> '이 코드는 name 파라미터를 받는 생성자를'
 - 155쪽 둘째줄 '에디티텍스트' -> '에디트텍스트'
 - 160쪽 6.3절 둘째줄 'FloatingActionButton' -> 'FloatingActionButton,' (콤마)
+- 6장 전체적으로 본문 LAB -> LAP 수정
+  - 160쪽 하단 스샷 LAB -> LAP
+  - 175쪽 4째줄 labButton -> lapButton
+  - 176쪽 스샷수정 LAB -> LAP
+  - 180쪽 하단 11번 동그라미에 labLayout -> lapLayout
+  - 186쪽 6.5.2절 소스코드 4번 동그라미 줄 LAB -> LAP
+  - 186쪽 6.5.2절 하단 문단 4번 동그라미 1 LAB -> 1 LAP
+  - 187쪽 소스코드 아래에서 6번째 줄 LAB -> LAP
+- 201쪽 제일 아래줄 7번 동그라미 WebView -> webView
+
 - 411쪽 하단 소스 코드 'realmCollection' -> 'realmResult'
 
 ## 관련 서적
