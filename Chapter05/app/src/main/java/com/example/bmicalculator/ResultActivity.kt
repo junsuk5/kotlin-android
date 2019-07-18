@@ -1,9 +1,10 @@
 package com.example.bmicalculator
 
+import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_result.*
-import org.jetbrains.anko.toast
 
 class ResultActivity : AppCompatActivity() {
 
@@ -44,4 +45,9 @@ class ResultActivity : AppCompatActivity() {
         // 토스트 메시지로 BMI 값 표시
         toast("$bmi")
     }
+}
+
+// 액티비티에서 간단히 토스트 메시지를 표시할 수 있는 확장 함수
+fun Activity.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
