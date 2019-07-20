@@ -39,6 +39,7 @@
 - 325쪽 flashOn(), flashOff() 메서드내에 cameraManager.setTorchMode(cameraId!!, true) 로 수정
 - 339쪽 "새로 크기를" -> "세로 크기를"
 - 396쪽 하단 이미지에서 kotlin-kapt 를 realm-android 보다 위에 작성
+- 405쪽 소스 코드 중 .visibility = View.GONE -> hide() 로 수정
 - 411쪽 하단 소스 코드 'realmCollection' -> 'realmResult'
 
 ## 관련 서적
