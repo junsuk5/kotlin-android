@@ -37,6 +37,7 @@
   - 187쪽 소스코드 아래에서 6번째 줄 LAB -> LAP
 - 201쪽 제일 아래줄 7번 동그라미 WebView -> webView
 - 339쪽 "새로 크기를" -> "세로 크기를"
+- 396쪽 하단 이미지에서 kotlin-kapt 를 realm-android 보다 위에 작성
 - 411쪽 하단 소스 코드 'realmCollection' -> 'realmResult'
 
 ## 관련 서적
