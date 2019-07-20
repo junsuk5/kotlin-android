@@ -36,6 +36,7 @@
   - 186쪽 6.5.2절 하단 문단 4번 동그라미 1 LAB -> 1 LAP
   - 187쪽 소스코드 아래에서 6번째 줄 LAB -> LAP
 - 201쪽 제일 아래줄 7번 동그라미 WebView -> webView
+- 325쪽 flashOn(), flashOff() 메서드내에 cameraManager.setTorchMode(cameraId!!, true) 로 수정
 - 339쪽 "새로 크기를" -> "세로 크기를"
 - 396쪽 하단 이미지에서 kotlin-kapt 를 realm-android 보다 위에 작성
 - 411쪽 하단 소스 코드 'realmCollection' -> 'realmResult'
