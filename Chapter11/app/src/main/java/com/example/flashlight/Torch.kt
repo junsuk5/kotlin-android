@@ -14,12 +14,15 @@ class Torch(context: Context) {
     }
 
     fun flashOn() {
-        cameraManager.setTorchMode(cameraId, true)
-
+        cameraId?.let {
+            cameraManager.setTorchMode(it, true)
+        }
     }
 
     fun flashOff() {
-        cameraManager.setTorchMode(cameraId, false)
+        cameraId?.let {
+            cameraManager.setTorchMode(it, false)
+        }
     }
 
     private fun getCameraId(): String? {

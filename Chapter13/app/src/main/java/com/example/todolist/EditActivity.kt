@@ -1,7 +1,7 @@
 package com.example.todolist
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
@@ -21,7 +21,7 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit)
 
         // 업데이트 조건
-        val id = intent.getLongExtra("id", -1L)
+        val id = intent.getLongExtra("id", -1)
         if (id == -1L) {
             insertMode()
         } else {
@@ -50,9 +50,11 @@ class EditActivity : AppCompatActivity() {
     // 수정 모드 초기화
     private fun updateMode(id: Long) {
         // id에 해당하는 객체를 화면에 표시
-        val todo = realm.where<Todo>().equalTo("id", id).findFirst()!!
-        todoEditText.setText(todo.title)
-        calendarView.date = todo.date
+        realm.where<Todo>().equalTo("id", id)
+                .findFirst()?.apply {
+                    todoEditText.setText(title)
+                    calendarView.date = date
+                }
 
         // 완료 버튼을 클릭하면 수정
         fab.setOnClickListener {

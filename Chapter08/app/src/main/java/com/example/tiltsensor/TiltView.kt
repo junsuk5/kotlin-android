@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.hardware.SensorEvent
 import android.view.View
 
-class TiltView(context: Context?) : View(context) {
+class TiltView(context: Context) : View(context) {
     private val greenPaint: Paint = Paint()
     private val blackPaint: Paint = Paint()
 

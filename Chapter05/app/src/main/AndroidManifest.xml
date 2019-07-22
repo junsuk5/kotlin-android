@@ -18,7 +18,8 @@
         </activity>
         <activity
             android:name=".ResultActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

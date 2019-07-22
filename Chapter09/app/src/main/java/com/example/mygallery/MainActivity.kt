@@ -4,11 +4,11 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
@@ -16,9 +16,9 @@ import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 import kotlin.concurrent.timer
 
-class MainActivity : AppCompatActivity() {
+private const val REQUEST_READ_EXTERNAL_STORAGE = 1000
 
-    private val REQUEST_READ_EXTERNAL_STORAGE = 1000
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 null,       // ②
                 null,       // ③
                 null,   // ④
-                MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC")    // ⑤
+                MediaStore.Images.ImageColumns.DATE_ADDED + " DESC")    // ⑤
 
         // ①
         val fragments = ArrayList<Fragment>()

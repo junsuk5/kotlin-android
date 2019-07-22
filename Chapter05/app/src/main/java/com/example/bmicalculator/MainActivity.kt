@@ -1,10 +1,10 @@
 package com.example.bmicalculator
 
+import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,10 +20,11 @@ class MainActivity : AppCompatActivity() {
             saveData(heightEditText.text.toString().toInt(),
                     weightEditText.text.toString().toInt())
 
-            startActivity<ResultActivity>(
-                    "weight" to weightEditText.text.toString(),
-                    "height" to heightEditText.text.toString()
-            )
+            val intent = Intent(this, ResultActivity::class.java).apply {
+                putExtra("weight", weightEditText.text.toString())
+                putExtra("height", heightEditText.text.toString())
+            }
+            startActivity(intent)
         }
     }
 
