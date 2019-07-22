@@ -3,13 +3,14 @@ package com.example.mywebbrowser
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.browse
 import org.jetbrains.anko.email
@@ -24,7 +25,11 @@ class MainActivity : AppCompatActivity() {
         // 웹뷰 기본 설정
         webView.apply {
             settings.javaScriptEnabled = true
-            webViewClient = WebViewClient()
+            webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView, url: String) {
+                    urlEditText.setText(url)
+                }
+            }
         }
 
         webView.loadUrl("http://www.google.com")
@@ -51,13 +56,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 옵션 메뉴 작성
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.action_google, R.id.action_home -> {
                 webView.loadUrl("http://www.google.com")
                 return true
@@ -91,18 +96,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 컨텍스트 메뉴 작성
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.context, menu)
     }
 
-    override fun onContextItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.action_share -> {
                 share(webView.url)
+                return true
             }
             R.id.action_browser -> {
                 browse(webView.url)
+                return true
             }
         }
         return super.onContextItemSelected(item)
