@@ -1,5 +1,6 @@
-# 오준석의 안드로이드 생존코딩: 코틀린 편
+[공지] 2019. 7. 22. 에 AndroidX, SDK 29에 대응하는 코드로 업데이트 되었습니다.
 
+# 오준석의 안드로이드 생존코딩: 코틀린 편
 <img src="http://image.yes24.com/momo/TopCate1985/MidCate002/198416184.jpg" width="240">
 
 * [Yes24](http://bit.ly/2N6RoUS)
