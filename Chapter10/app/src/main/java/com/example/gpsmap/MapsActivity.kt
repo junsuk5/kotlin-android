@@ -6,11 +6,11 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -28,8 +28,9 @@ import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
 
+private const val REQUEST_ACCESS_FINE_LOCATION = 1000
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
-    private val REQUEST_ACCESS_FINE_LOCATION = 1000
 
     private lateinit var mMap: GoogleMap    // 1
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
