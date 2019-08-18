@@ -36,6 +36,8 @@
   - 186쪽 6.5.2절 소스코드 4번 동그라미 줄 LAB -> LAP
   - 186쪽 6.5.2절 하단 문단 4번 동그라미 1 LAB -> 1 LAP
   - 187쪽 소스코드 아래에서 6번째 줄 LAB -> LAP
+- 194쪽 7.3.1 테마 수정 삭제 -> Android Studio 3.3 부터 해당 기능이 삭제 됨
+  - https://github.com/junsuk5/kotlin-android/tree/master/Chapter07/app/src/main/res/values 참고하여 직접 테마수정 가능함
 - 201쪽 제일 아래줄 7번 동그라미 WebView -> webView
 - 325쪽 flashOn(), flashOff() 메서드내에 cameraManager.setTorchMode(cameraId!!, true) 로 수정
 - 339쪽 "새로 크기를" -> "세로 크기를"
