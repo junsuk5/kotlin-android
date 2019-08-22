@@ -39,6 +39,7 @@
 - 194쪽 7.3.1 테마 수정 삭제 -> Android Studio 3.3 부터 해당 기능이 삭제 됨
   - https://github.com/junsuk5/kotlin-android/tree/master/Chapter07/app/src/main/res/values 참고하여 직접 테마수정 가능함
 - 201쪽 제일 아래줄 7번 동그라미 WebView -> webView
+- 305쪽 소스에서 setContentView(R.layout.activity_maps) 누락됨
 - 325쪽 flashOn(), flashOff() 메서드내에 cameraManager.setTorchMode(cameraId!!, true) 로 수정
 - 339쪽 "새로 크기를" -> "세로 크기를"
 - 396쪽 하단 이미지에서 kotlin-kapt 를 realm-android 보다 위에 작성
