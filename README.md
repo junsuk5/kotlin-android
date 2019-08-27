@@ -29,6 +29,7 @@
 - 113, 114쪽 toUpperCase -> toUpperCase()
 - 155쪽 둘째줄 '에디티텍스트' -> '에디트텍스트'
 - 160쪽 6.3절 둘째줄 'FloatingActionButton' -> 'FloatingActionButton,' (콤마)
+- 169쪽 하단 스샷 'com.android.support.design:27.1.1' -> 'com.google.android.material:material:1.0.0' 로 변경 됨
 - 6장 전체적으로 본문 LAB -> LAP 수정
   - 160쪽 하단 스샷 LAB -> LAP
   - 175쪽 4째줄 labButton -> lapButton
@@ -46,6 +47,8 @@
 - 396쪽 하단 이미지에서 kotlin-kapt 를 realm-android 보다 위에 작성
 - 405쪽 소스 코드 중 .visibility = View.GONE -> hide() 로 수정
 - 411쪽 하단 소스 코드 'realmCollection' -> 'realmResult'
+- 414쪽 스샷 Root element 값을 android.support.constraint.ConstraintLayout -> androidx.constraintlayout.widget.ConstraintLayout 로 수정
+
 
 ## 관련 서적
 
