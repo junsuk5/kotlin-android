@@ -2,9 +2,11 @@ package com.example.bmicalculator
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         loadData()
 
         resultButton.setOnClickListener {
+            if (TextUtils.isEmpty(weightEditText.text) ||
+                    TextUtils.isEmpty(heightEditText.text)) {
+                toast("값을 입력해 주세요 please")
+                return@setOnClickListener
+            }
+
             // 마지막에 입력한 내용을 저장
             saveData(heightEditText.text.toString().toInt(),
                     weightEditText.text.toString().toInt())

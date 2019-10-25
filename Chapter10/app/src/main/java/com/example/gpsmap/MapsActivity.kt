@@ -80,7 +80,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * 호주 시드니 근처에 표식을 추가하고 있습니다.
      * Google Play 서비스가 기기에 설치되어 있지 않으면 사용자에게 설치하라는 메시지가 표시됩니다.
      * SupportMapFragment 안에 있습니다. 이 메소드는 한 번만 호출됩니다.
-     * Google Play 서비스가 설치되고 앱으로 돌아 옵니.
+     * Google Play 서비스가 설치되고 앱으로 돌아 옵니다.
      */
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {

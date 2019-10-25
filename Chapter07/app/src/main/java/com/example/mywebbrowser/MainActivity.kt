@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        webView.loadUrl("http://www.google.com")
+        webView.loadUrl("https://www.google.com")
 
         urlEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -64,15 +64,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_google, R.id.action_home -> {
-                webView.loadUrl("http://www.google.com")
+                webView.loadUrl("https://www.google.com")
                 return true
             }
             R.id.action_naver -> {
-                webView.loadUrl("http://www.naver.com")
+                webView.loadUrl("https://www.naver.com")
                 return true
             }
             R.id.action_daum -> {
-                webView.loadUrl("http://www.daum.net")
+                webView.loadUrl("https://www.daum.net")
                 return true
             }
             R.id.action_call -> {

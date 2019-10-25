@@ -1,9 +1,9 @@
 package com.example.todolist
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.Sort
 import io.realm.kotlin.where

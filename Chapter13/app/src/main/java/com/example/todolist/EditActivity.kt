@@ -68,15 +68,17 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun updateTodo(id: Long) {
-        realm.beginTransaction()
-        val todo = realm.where<Todo>().equalTo("id", id).findFirst()!!
-        todo.title = todoEditText.text.toString()
-        todo.date = calendar.timeInMillis
-        realm.commitTransaction()
+        realm.where<Todo>().equalTo("id", id)
+                .findFirst()?.apply {
+                    realm.beginTransaction()
+                    title = todoEditText.text.toString()
+                    date = calendar.timeInMillis
+                    realm.commitTransaction()
 
-        alert("내용이 변경되었습니다.") {
-            yesButton { finish() }
-        }.show()
+                    alert("내용이 변경되었습니다.") {
+                        yesButton { finish() }
+                    }.show()
+                }
     }
 
     private fun insertTodo() {

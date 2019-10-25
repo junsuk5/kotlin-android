@@ -2,8 +2,8 @@ package com.example.bmicalculator
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bmicalculator.extensions.toast
 import kotlinx.android.synthetic.main.activity_result.*
+import org.jetbrains.anko.toast
 
 class ResultActivity : AppCompatActivity() {
 
@@ -12,8 +12,8 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         // 전달 받은 키와 몸무게
-        val height = intent.getStringExtra("height").toInt()
-        val weight = intent.getStringExtra("weight").toInt()
+        val height = intent?.getStringExtra("height")?.toInt() ?: 0
+        val weight = intent?.getStringExtra("weight")?.toInt() ?: 0
 
         // BMI 계산
         val bmi = weight / Math.pow(height / 100.0, 2.0)
