@@ -1,6 +1,8 @@
 package com.example.mygallery
 
 
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +15,13 @@ import kotlinx.android.synthetic.main.fragment_photo.*
 private const val ARG_URI = "uri"
 
 class PhotoFragment : Fragment() {
-    private var uri: String? = null
+    private lateinit var uri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 2
-        arguments?.let {
-            uri = it.getString(ARG_URI)
+        arguments?.getParcelable<Uri>(ARG_URI)?.let {
+            uri = it
         }
     }
 
@@ -31,16 +33,22 @@ class PhotoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Glide.with(this).load(uri).into(imageView)
+
+        // use 함수는 자동으로 close 해 줌
+        val descriptor = requireContext().contentResolver.openFileDescriptor(uri, "r")
+        descriptor?.use {
+            val bitmap = BitmapFactory.decodeFileDescriptor(descriptor.fileDescriptor)
+            Glide.with(this).load(bitmap).into(imageView)
+        }
     }
 
     // 1
     companion object {
         @JvmStatic
-        fun newInstance(uri: String) =
+        fun newInstance(uri: Uri) =
                 PhotoFragment().apply {
                     arguments = Bundle().apply {
-                        putString(ARG_URI, uri)
+                        putParcelable(ARG_URI, uri)
                     }
                 }
     }

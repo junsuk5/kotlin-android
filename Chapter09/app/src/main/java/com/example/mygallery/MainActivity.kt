@@ -1,10 +1,10 @@
 package com.example.mygallery
 
 import android.Manifest
+import android.content.ContentUris
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -71,23 +71,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAllPhotos() {
+        val fragments = mutableListOf<Fragment>()
+
         // 모든 사진 정보 가져오기
-        val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,    // ①
+        val query = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,    // ①
                 null,       // ②
                 null,       // ③
                 null,   // ④
-                MediaStore.Images.ImageColumns.DATE_ADDED + " DESC")    // ⑤
+                "${MediaStore.Images.ImageColumns.DATE_ADDED} DESC")    // ⑤
 
-        // ①
-        val fragments = ArrayList<Fragment>()
-        if (cursor != null) {
+        // Scoped Storage 대응
+        query?.use { cursor ->
+            val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
+
             while (cursor.moveToNext()) {
-                // 사진 경로 Uri 가지고 오기 ②
-                val uri = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
-                Log.d("MainActivity", uri)
-                fragments.add(PhotoFragment.newInstance(uri))
+                val id = cursor.getLong(idColumn)
+
+                val contentUri = ContentUris.withAppendedId(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        id
+                )
+
+                fragments.add(PhotoFragment.newInstance(contentUri))
             }
-            cursor.close() // ③
         }
 
         // 어댑터
