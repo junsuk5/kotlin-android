@@ -1,5 +1,10 @@
-[공지] 2019. 7. 22. 에 AndroidX, SDK 29에 대응하는 코드로 업데이트 되었습니다.
+[공지] 2019. 7. 22. 이후부터 AndroidX, SDK 29에 대응하는 코드로 업데이트 하고 있습니다.
 [공지] 현재 안드로이드 스튜디오로 새 프로젝트를 만들면 AndroidX가 강제로 설정되므로 책에 support.로 시작하는 패키지들이 모두 androidx. 로 변경되었습니다. 
+
+# 챕터9
+챕터9는 Android10의 저장소 관련 정책 변경으로 (Scoped Strorage) targetSdk 29로 실행하기 위해서 상당수 코드 변경이 필요합니다.
+https://github.com/junsuk5/kotlin-android/commit/b56e66051cb1af7aaa621c861c19f41b29664858
+기본 코드를 그대로 실행하려면 targetSdk를 28로 하시면 됩니다.
 
 # 오준석의 안드로이드 생존코딩: 코틀린 편
 <img src="http://image.yes24.com/momo/TopCate1985/MidCate002/198416184.jpg" width="240">
