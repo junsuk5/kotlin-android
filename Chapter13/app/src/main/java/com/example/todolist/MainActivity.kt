@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
-    val realm = Realm.getDefaultInstance()
+    private val realm = Realm.getDefaultInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

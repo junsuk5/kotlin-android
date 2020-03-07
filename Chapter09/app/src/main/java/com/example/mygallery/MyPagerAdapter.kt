@@ -2,8 +2,9 @@ package com.example.mygallery
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 
-class MyPagerAdapter(fm: FragmentManager) : androidx.fragment.app.FragmentStatePagerAdapter(fm) {
+class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     // 뷰페이저가 표시할 프래그먼트 목록
     private val items = ArrayList<Fragment>()
 

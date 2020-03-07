@@ -12,9 +12,9 @@ import java.util.*
 
 class EditActivity : AppCompatActivity() {
 
-    val realm = Realm.getDefaultInstance()
+    private val realm = Realm.getDefaultInstance()
 
-    val calendar: Calendar = Calendar.getInstance()
+    private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
