@@ -8,6 +8,11 @@
 * 챕터 9 - https://youtu.be/ixeua1QsKqI
 * 챕터 13 - https://youtu.be/PS0MmgxVjYc
 
+# 챕터13
+현재 버전에서 BasicActivity를 선택하면 자동으로 Fragment를 이용해 구현된 예제가 나오는데 책에 있는 내용과 꽤 달라져 맞춰가면서 수정을 하여 독자분께서 공개한 소스입니다.
+참고하시기 바랍니다.
+https://github.com/dazeemdas/ojs_ch13_fragment
+
 # 챕터9
 챕터9는 Android10의 저장소 관련 정책 변경으로 (Scoped Strorage) targetSdk 29로 실행하기 위해서 상당수 코드 변경이 필요합니다.
 
