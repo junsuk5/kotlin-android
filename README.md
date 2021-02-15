@@ -1,3 +1,14 @@
+[공지] kotlin-extensions 비추천으로 인해 기본 프로젝트 구성시 자동으로 id 참조가 되지 않는 문제가 있습니다
+
+Module수준의 build.gradle 의 최상단에 다음과 같이 id 'kotlin-android-extensions' 를 추가하시면 책 내용대로 진행하실 수 있습니다.
+```
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
+```
+
 [공지] 2019. 7. 22. 이후부터 AndroidX, SDK 29에 대응하는 코드로 업데이트 하고 있습니다.
 
 [공지] 현재 안드로이드 스튜디오로 새 프로젝트를 만들면 AndroidX가 강제로 설정되므로 책에 support.로 시작하는 패키지들이 모두 androidx. 로 변경되었습니다. 
