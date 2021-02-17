@@ -45,7 +45,7 @@ https://github.com/junsuk5/kotlin-android/commit/b56e66051cb1af7aaa621c861c19f41
 * [페이스북](https://www.facebook.com/untilandroid)
 * [브런치](https://brunch.co.kr/@hopeless)
 
-## 오탈자 및 오류, 변경사항
+## 오탈자 및 오류, 변경사항 (1쇄 기준, 3쇄에는 대부분 수정되어 있음)
 
 책을 보시다가 오탈자 및 오류를 발견하실 경우 Github에 이슈로 등록 해 주시기 바랍니다.
 
