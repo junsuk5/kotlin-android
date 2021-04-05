@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">BmiCalculator</string>
+    <string name="app_name">Chapter05</string>
     <string name="height">키</string>
     <string name="weight">몸무게</string>
-    <string name="result">결과</string>
 </resources>

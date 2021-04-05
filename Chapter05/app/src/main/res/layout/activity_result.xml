@@ -24,11 +24,11 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="웃는 사진"
-        android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_sentiment_satisfied_black_24dp" />
+        app:srcCompat="@drawable/ic_sentiment_satisfied_black_24dp"
+        app:tint="@color/design_default_color_primary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
