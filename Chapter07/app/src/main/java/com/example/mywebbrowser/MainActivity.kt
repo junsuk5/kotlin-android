@@ -11,32 +11,31 @@ import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.browse
-import org.jetbrains.anko.email
-import org.jetbrains.anko.sendSMS
-import org.jetbrains.anko.share
+import com.example.mywebbrowser.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 웹뷰 기본 설정
-        webView.apply {
+        binding.webView.apply {
             settings.javaScriptEnabled = true
             webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView, url: String) {
-                    urlEditText.setText(url)
+                    binding.urlEditText.setText(url)
                 }
             }
         }
 
-        webView.loadUrl("https://www.google.com")
+        binding.webView.loadUrl("https://www.google.com")
 
-        urlEditText.setOnEditorActionListener { _, actionId, _ ->
+        binding.urlEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                webView.loadUrl(urlEditText.text.toString())
+                binding.webView.loadUrl(binding.urlEditText.text.toString())
                 true
             } else {
                 false
@@ -44,12 +43,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 컨텍스트 메뉴 등록
-        registerForContextMenu(webView)
+        registerForContextMenu(binding.webView)
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
+        if (binding.webView.canGoBack()) {
+            binding.webView.goBack()
         } else {
             super.onBackPressed()
         }
@@ -64,15 +63,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_google, R.id.action_home -> {
-                webView.loadUrl("https://www.google.com")
+                binding.webView.loadUrl("https://www.google.com")
                 return true
             }
             R.id.action_naver -> {
-                webView.loadUrl("https://www.naver.com")
+                binding.webView.loadUrl("https://www.naver.com")
                 return true
             }
             R.id.action_daum -> {
-                webView.loadUrl("https://www.daum.net")
+                binding.webView.loadUrl("https://www.daum.net")
                 return true
             }
             R.id.action_call -> {
@@ -84,11 +83,15 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_send_text -> {
-                sendSMS("031-123-4567", webView.url)
+                binding.webView.url?.let { url ->
+                    sendSMS("031-123-4567", url)
+                }
                 return true
             }
             R.id.action_email -> {
-                email("test@example.com", "좋은 사이트", webView.url)
+                binding.webView.url?.let { url ->
+                    email("test@example.com", "좋은 사이트", url)
+                }
                 return true
             }
         }
@@ -104,11 +107,17 @@ class MainActivity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_share -> {
-                share(webView.url)
+                // 페이지 공유
+                binding.webView.url?.let { url ->
+                    share(url)
+                }
                 return true
             }
             R.id.action_browser -> {
-                browse(webView.url)
+                // 기본 웹 브라우저에서 열기
+                binding.webView.url?.let { url ->
+                    browse(url)
+                }
                 return true
             }
         }
